@@ -5,14 +5,16 @@ services:
         ports:
             - '8080:8080'
             - '50000:50000'
-        image: foxylion/jenkins
+        image: localhost:5000/jenkins
     jenkins-slave:
         container_name: jenkins-slave
         restart: always
         environment:
             - 'JENKINS_URL=http://jenkins:8080'
-        image: jlnpslave:final
+        image: localhost:5000/jenkins-slave
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
+            - /opt/buildagent/work:/opt/buildagent/work
+            - /opt/buildagent/temp:/opt/buildagent/temp
         depends_on:
             - jenkins
