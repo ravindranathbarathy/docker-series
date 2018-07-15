@@ -16,13 +16,13 @@ services:
   accountownerapp:
     depends_on:
       - db
-    image: localhost:5000/accountownerapp:latest
+    image: accountownerapp:latest
     build:
       context: .
   integration:
     depends_on:
       - accountownerapp
-    image: localhost:5000/accountownerapp:test
+    image: accountownerapp:test
     build:
       context: .
       dockerfile: Dockerfile.Integration
