@@ -16,13 +16,13 @@ services:
   accountownerapp:
     depends_on:
       - db
-    image: accountownerapp:latest
+    image: "accountownerapp:${BUILD_NUMBER}"
     build:
       context: .
   integration:
     depends_on:
       - accountownerapp
-    image: accountownerapp:test
+    image: "accountownerapp:test-${BUILD_NUMBER}"
     build:
       context: .
       dockerfile: Dockerfile.Integration
