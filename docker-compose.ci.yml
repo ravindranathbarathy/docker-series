@@ -14,7 +14,5 @@ services:
         image: localhost:5000/jenkins-slave
         volumes:
             - /var/run/docker.sock:/var/run/docker.sock
-            - /opt/buildagent/work:/opt/buildagent/work
-            - /opt/buildagent/temp:/opt/buildagent/temp
         depends_on:
             - jenkins
