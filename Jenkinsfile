@@ -9,7 +9,7 @@ node('docker') {
     stage 'Pusblish UT Reports'
         
         containerID = sh (
-            script: "docker run -d ${accountownerapp:B${BUILD_NUMBER}", 
+            script: "docker run -d accountownerapp:B${BUILD_NUMBER}", 
         returnStdout: true
         ).trim()
         echo "Container ID is ==> ${containerID}"
