@@ -6,5 +6,5 @@ node('docker') {
         sh 'docker build -t accountownerapp:latest -f Dockerfile .'
         sh 'docker build -t accountownerapp:test -f Dockerfile.Integration .'
     stage 'Integration Test'
-
+        sh 'docker-compose -f docker-compose.integration.yml up'
 }
