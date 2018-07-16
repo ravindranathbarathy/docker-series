@@ -16,8 +16,8 @@ node('docker') {
         sh "docker cp ${containerID}:/TestResults/test_results.xml test_results.xml"
         sh "docker stop ${containerID}"
         sh "docker rm ${containerID}"
-        xunit testTimeMargin: '3000', thresholdMode: 1, thresholds: [failed(), skipped()], tools: [xUnitDotNet(deleteOutputFiles: true, failIfNotNew: true, pattern: 'test_results.xml', skipNoTestFiles: true, stopProcessingIfError: true)]
-    
+        step([$class: 'MSTestPublisher', failOnError: false, testResultsFile: 'test_results.xml'])    
+      
     stage 'Integration Test'
         //sh 'docker-compose -f docker-compose.integration.yml up'
         sh "docker-compose -f docker-compose.integration.yml up --force-recreate --abort-on-container-exit"
